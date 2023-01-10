@@ -29,8 +29,8 @@ public class Server {
                 public void run() {
                     while(true){
                         text = scan.nextLine();
-                        out.write(text);
-//                        out.println(text);
+//                        out.write(text);
+                        out.println(text);
                         out.flush();
                     }
                 }
