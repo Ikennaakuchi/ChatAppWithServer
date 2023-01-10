@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -11,10 +8,17 @@ public class Client {
         final BufferedReader br;
         final PrintWriter out;
         final Scanner scan = new Scanner(System.in);
+        final InputStreamReader reader;
+        final OutputStreamWriter writer;
+
         try{
             clientSocket = new Socket("127.0.0.1", 5000);
-            out = new PrintWriter(clientSocket.getOutputStream());
-            br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+            reader = new InputStreamReader(clientSocket.getInputStream());
+            writer = new OutputStreamWriter(clientSocket.getOutputStream());
+
+            out = new PrintWriter(writer);
+            br = new BufferedReader(reader);
 
             Thread sender = new Thread(new Runnable() {
                 String text;
